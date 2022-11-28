@@ -86,43 +86,44 @@ def userInput2(day):
         break
 
 #initial user instructions and input of type of ppe and the initial day which is expected to be 1.
-print("This calculator returns the average number of ppe boxes used \nper day, the total number of ppe remaining, and the estimated days remaining.\nPlease start with day 1 and enter the starting quantity of boxes,\nand enter more than one day.\nCalculator assumes all ppe boxes have a ppe quantity of 200.")
-ppe = input("Enter the type of PPE: ")
-day = int(input("Enter the number 1 for the first monday, the first day of the entry, or 0 to quit\n"))
-userInput1(day)
-#Since the variable ppe is just used as a reference name, no user input is needed
-#Therefor the first user input would be for the day which must be 1.
+if __name__ == '__main__':
+    print("This calculator returns the average number of ppe boxes used \nper day, the total number of ppe remaining, and the estimated days remaining.\nPlease start with day 1 and enter the starting quantity of boxes,\nand enter more than one day.\nCalculator assumes all ppe boxes have a ppe quantity of 200.")
+    ppe = input("Enter the type of PPE: ")
+    day = int(input("Enter the number 1 for the first monday, the first day of the entry, or 0 to quit\n"))
+    userInput1(day)
+    #Since the variable ppe is just used as a reference name, no user input is needed
+    #Therefor the first user input would be for the day which must be 1.
 
-        
-#initiallized variable
-totaldays = 0
-totalppeused = 0
+            
+    #initiallized variable
+    totaldays = 0
+    totalppeused = 0
 
-#while loop to gather information from methods and loop through the days
-while(day != 0):
-    if(day == 1):
-        totalcount = getboxcount(day, ppe) 
-        day = int(input("Enter the number that corresponds to the day of the week you would like to\nenter for or 0 to quit\n2-tues 3-wed 4-thurs 5-friday:\n"))
-    else:
-        boxcount = getboxcount(day, ppe)
-        totalppeused = ppeusage(boxcount, totalcount)
-        day = int(input("Enter the number that corresponds to the day of the week you would like to\nenter for or 0 to quit\n2-tues 3-wed 4-thurs 5-friday:\n"))
-        totaldays += 1
-    userInput2(day)
-        
+    #while loop to gather information from methods and loop through the days
+    while(day != 0):
+        if(day == 1):
+            totalcount = getboxcount(day, ppe) 
+            day = int(input("Enter the number that corresponds to the day of the week you would like to\nenter for or 0 to quit\n2-tues 3-wed 4-thurs 5-friday:\n"))
+        else:
+            boxcount = getboxcount(day, ppe)
+            totalppeused = ppeusage(boxcount, totalcount)
+            day = int(input("Enter the number that corresponds to the day of the week you would like to\nenter for or 0 to quit\n2-tues 3-wed 4-thurs 5-friday:\n"))
+            totaldays += 1
+        userInput2(day)
+            
 
-#Gathering information from remaining methods to be used in the output.
-average = averageusage(totalppeused, totaldays)
-ppeleft = ppeleft(boxcount)
-daysleft = daysleft(boxcount, average)
+    #Gathering information from remaining methods to be used in the output.
+    average = averageusage(totalppeused, totaldays)
+    ppeleft = ppeleft(boxcount)
+    daysleft = daysleft(boxcount, average)
 
-#Output
-print("average number of boxes used per day is: ", average)
-print("total number of", end=" ")
-print(ppe, end=" ")
-print("left: ", ppeleft)
-print("number of days left of", end=" ")
-print(ppe, end=" ")
-print(": ", int(daysleft))
+    #Output
+    print("average number of boxes used per day is: ", average)
+    print("total number of", end=" ")
+    print(ppe, end=" ")
+    print("left: ", ppeleft)
+    print("number of days left of", end=" ")
+    print(ppe, end=" ")
+    print(": ", int(daysleft))
 
 
